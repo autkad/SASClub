@@ -1,3 +1,8 @@
+%let startyear=2001;
+%let currentyear=2024;
+
+
+
 data Releases;
   format Date DATE7.;
   input Category $8. Release $7. Date DATE9. Details $15.;
@@ -30,13 +35,15 @@ Recent  8.2    01Nov2019
 Recent  8.3    18Aug2020 SAS 9.4m7
 Recent  8.4    19Mar2024 SAS Viya
 ;
+
+
  
 /* running in SAS EG - modify active ODS to add title to graph */
 ods html5(id=eghtml) style=htmlencore gtitle;
  
 ods graphics / height=850 width=1300 ;
 title font="Anova" height=2.2 color=cx0766D1 
-  "SAS Enterprise Guide Releases (1999-2024)";
+  "SAS Enterprise Guide Releases (&startyear-&currentyear)";
 proc sgplot data=Releases noautolegend;
   styleattrs datacolors=(cxC4DEFD cxFFCC33 cx4398F9);
   block x=date block=category / transparency = 0.75 
